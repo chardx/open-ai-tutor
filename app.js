@@ -8,7 +8,6 @@ const openaiApiKey = process.env.openaiApiKey
 
 app.get('/', function (req, res) {
     res.write("<h1> Welcome to my open-ai Tutor API </h1>")
-    res.write(openaiApiKey)
     res.send();
 })
 
