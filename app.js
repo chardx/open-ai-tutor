@@ -1,9 +1,10 @@
+
 const express = require("express")
 const app = express();
 const axios = require('axios')
+require('dotenv').config()
 
-const openaiApiKey = process.env.openaiApiKey
-
+const openaiApiKey = process.env.OPENAI_API_KEY
 
 
 app.get('/', function (req, res) {
@@ -11,26 +12,50 @@ app.get('/', function (req, res) {
     res.send();
 })
 
-const getTutorial = async () => {
-    const { data: response } = await axios.post(
-        "https://api.openai.com/v1/completions",
-        {
-            model: "text-davinci-003",
-            prompt: 'Ask a Random question about React and answer in best explanation',
-            max_tokens: 70,
-            temperature: 0.5,
-            top_p: 1,
-        },
-        {
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${openaiApiKey}`,
-            },
-        }
-    );
+function getKeyword() {
+    // select random keywords
+    const keywords = [
+        "reactjs",
+        "nextjs",
+        "reactjs Hooks",
+        "nodejs",
+        "javascript",
+        "front-end developer",
+        "back-end developer",
+        "html",
+        "css",
+    ];
 
-    const comment = response.choices[0].text;
-    console.log(comment);
+    const index = Math.floor(Math.random() * keywords.length);
+    return keywords[index];
+}
+
+const getTutorial = async () => {
+    const keyword = getKeyword();
+    try {
+
+        const { data: response } = await axios.post(
+            "https://api.openai.com/v1/completions",
+            {
+                model: "text-davinci-003",
+                prompt: `Act as Interviewer for Web Developer position and ask advance question about ${keyword} and provide your answer in the best answer possible`,
+                max_tokens: 150,
+                temperature: 0.5,
+                top_p: 1,
+            },
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${openaiApiKey}`,
+                },
+            }
+        );
+
+        const comment = response.choices[0].text;
+        console.log(comment);
+    } catch (error) {
+        console.log(error);
+    }
 
 }
 // Delay each iteration for 30min
