@@ -2,7 +2,7 @@ const express = require("express")
 const app = express();
 const axios = require('axios')
 
-const openaiApiKey = "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";
+const openaiApiKey = process.env.openaiApiKey
 
 
 
