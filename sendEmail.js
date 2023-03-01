@@ -1,10 +1,11 @@
 import { transporter, mailOptions } from "./nodemailer.js";
 
-export const sendEmail = async (generatedTutorial, keyword) => {
+export const sendEmail = async (generatedTutorial, keyword, category) => {
     await transporter.sendMail({
         ...mailOptions,
-        subject: "Tutorial for " + generatedTutorial,
+        subject: `${category} about ${keyword}`,
         text: generatedTutorial,
-        html: "<h1> Test Title </h1><p>Some body text</p>",
+        html: `<h3> ${category} </h3> <p>${generatedTutorial}</p>`,
     })
 }
+
