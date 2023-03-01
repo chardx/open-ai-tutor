@@ -1,9 +1,12 @@
 
-const express = require("express")
-const app = express();
-const axios = require('axios')
-require('dotenv').config()
+import express from "express"
 
+import axios from 'axios'
+import dotenv from 'dotenv';
+import { sendEmail } from './sendEmail.js'
+
+const app = express();
+dotenv.config();
 const openaiApiKey = process.env.OPENAI_API_KEY
 
 
@@ -30,6 +33,7 @@ function getKeyword() {
     return keywords[index];
 }
 
+
 const getTutorial = async () => {
     const keyword = getKeyword();
     try {
@@ -51,8 +55,11 @@ const getTutorial = async () => {
             }
         );
 
-        const comment = response.choices[0].text;
-        console.log(comment);
+        const generatedTutorial = response.choices[0].text;
+        console.log(generatedTutorial);
+
+        //Send Email
+        sendEmail(generatedTutorial, keyword);
     } catch (error) {
         console.log(error);
     }
