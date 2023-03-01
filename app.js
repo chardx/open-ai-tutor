@@ -54,10 +54,8 @@ function getPrompt() {
         in 4 multiple choice of answer. Provide the answer below and explanation. 
         I also want the response to enclose it with html proper tagging and add style. ` },
         {
-            type: 'CSS Tip of the Day', description: `Hey ChatGPT, can you share with me today's advanced CSS tip?
-     I'm eager to learn how to use the latest CSS techniques to create visually stunning designs 
-     and improve my web development skills. Whether it's a new way to use CSS animations or a cutting-edge layout technique, I'm ready to take my skills to the next level. 
-     So please, share your best CSS tip of the day with me! Please also provide code example`}]
+            type: 'CSS Tip of the Day', description: `Provide a Random CSS Tip and provide a code example`
+        }]
 
     const categoryIndex = Math.floor(Math.random() * categories.length);
 
@@ -100,7 +98,7 @@ const getTutorial = async () => {
 
 }
 // Delay each iteration for 30min
-setInterval(getTutorial, 1 * 60 * 1000);
+setInterval(getTutorial, 30 * 60 * 1000);
 getTutorial();
 
 app.listen(3000, function () {
