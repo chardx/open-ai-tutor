@@ -101,6 +101,7 @@ const getTutorial = async () => {
 setInterval(getTutorial, 30 * 60 * 1000);
 getTutorial();
 
-app.listen(3000, function () {
-    console.log("Listening to 3000")
+const port = process.env.PORT || 9001
+app.listen(port, () => {
+    console.log(`Listening to ${port}`)
 })
