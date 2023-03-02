@@ -98,7 +98,7 @@ const getTutorial = async () => {
 
 }
 // Delay each iteration for 30min
-setInterval(getTutorial, 30 * 60 * 1000);
+setInterval(getTutorial, 2 * 60 * 1000);
 getTutorial();
 
 const port = process.env.PORT || 9001
