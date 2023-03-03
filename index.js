@@ -1,5 +1,6 @@
 import express from "express"
 import home from "./routes/home.js"
+import run from "./routes/run-command.js"
 
 import axios from 'axios'
 import dotenv from 'dotenv';
@@ -12,7 +13,7 @@ app.use(express.json());
 
 // Routes
 app.use("/home", home);
-
+app.use("/run", run)
 dotenv.config();
 const openaiApiKey = process.env.OPENAI_API_KEY
 
@@ -20,11 +21,6 @@ app.get('/', function (req, res) {
     res.write("<h1> Welcome to my open-ai Tutor API </h1>")
     res.send();
 })
-
-app.get('/run-command', (req, res) => {
-    // Code to run your command goes here
-    res.send('Command executed successfully');
-});
 
 
 function getPrompt() {
@@ -114,7 +110,7 @@ export const getTutorial = async () => {
 }
 // Delay each iteration for 30min
 // setInterval(getTutorial, 2 * 60 * 1000);
-const generatedTut = getTutorial();
+// const generatedTut = getTutorial();
 
 const port = process.env.PORT || 9001
 app.listen(port, () => {

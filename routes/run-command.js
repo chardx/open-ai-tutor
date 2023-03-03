@@ -1,13 +1,14 @@
 import express from 'express'
 import { getTutorial } from '../index.js'
 
-const app = express();
 
-app.get('/', (req, res) => {
+const router = express.Router();
+
+router.get('/', async (req, res) => {
     // Code to run your command goes here
-    const newTutorial = getTutorial();
+    const newTutorial = await getTutorial();
     console.log(newTutorial)
-    res.send('Command executed successfully');
+    res.send('Command executed successfully!');
 });
 
-export default app
+export default router
