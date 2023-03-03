@@ -1,5 +1,5 @@
 import express from "express"
-import home from "./routes/home"
+import home from "./routes/home.js"
 
 import axios from 'axios'
 import dotenv from 'dotenv';
