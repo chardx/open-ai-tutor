@@ -10,7 +10,6 @@
     {
       "src": "/(.*)",
       "dest": "/",
-      "use": "@vercel/cron",
       "config": {
         "schedule": "*/1 * * *"
       }
