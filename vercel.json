@@ -11,11 +11,5 @@
       "src": "/(.*)",
       "dest": "/"
     }
-  ],
-  "crons": [
-    {
-      "path": "/routes/run-command.js",
-      "schedule": "*/2 * * * *"
-    }
   ]
 }
