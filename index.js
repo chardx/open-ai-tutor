@@ -16,7 +16,6 @@ app.get('/', function (req, res) {
 })
 
 
-
 function getPrompt() {
     // select random keywords
     const keywords = [
@@ -54,8 +53,11 @@ function getPrompt() {
         in 4 multiple choice of answer. Provide the answer below and explanation. 
         I also want the response to enclose it with html proper tagging and add style. ` },
         {
-            type: 'CSS Tip of the Day', description: `Provide a Random CSS Tip and provide a code example`
-        }]
+            type: 'CSS Tip of the Day', description: `Provide a Super Random CSS Tip and provide a code example. I also want the response to enclose it with html proper tagging and add style.`
+        },
+        {
+            type: 'Javascript Coding problem', description: `Provide a random leet code problem and show your solutions in Javascript with explanation. I also want the response to enclose it with html proper tagging and add style.`
+        },]
 
     const categoryIndex = Math.floor(Math.random() * categories.length);
 
@@ -92,6 +94,8 @@ const getTutorial = async () => {
 
         //Send Email
         sendEmail(generatedTutorial, keyword, category);
+
+        return generatedTutorial;
     } catch (error) {
         console.log(error);
     }
@@ -99,7 +103,7 @@ const getTutorial = async () => {
 }
 // Delay each iteration for 30min
 setInterval(getTutorial, 2 * 60 * 1000);
-getTutorial();
+const generatedTut = getTutorial();
 
 const port = process.env.PORT || 9001
 app.listen(port, () => {
