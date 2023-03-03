@@ -9,10 +9,13 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/",
-      "config": {
-        "schedule": "*/1 * * *"
-      }
+      "dest": "/"
+    }
+  ],
+  "crons": [
+    {
+      "path": "/routes/run-command.js",
+      "schedule": "*/2 * * * *"
     }
   ]
 }
