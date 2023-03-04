@@ -23,6 +23,7 @@ const port = process.env.PORT || 9001
 app.get('/', function (req, res) {
     res.write("<h1> Welcome to my open-ai Tutor API </h1>")
     res.write("Listening to Port " + port)
+    res.write("Hi am Richard. This is a test ")
     res.send();
 })
 
