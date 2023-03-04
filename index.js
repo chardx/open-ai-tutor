@@ -17,8 +17,12 @@ app.use("/run", run)
 dotenv.config();
 const openaiApiKey = process.env.OPENAI_API_KEY
 
+const port = process.env.PORT || 9001
+
+
 app.get('/', function (req, res) {
     res.write("<h1> Welcome to my open-ai Tutor API </h1>")
+    res.write("Listening to Port " + port)
     res.send();
 })
 
@@ -112,7 +116,7 @@ export const getTutorial = async () => {
 // setInterval(getTutorial, 2 * 60 * 1000);
 // const generatedTut = getTutorial();
 
-const port = process.env.PORT || 9001
+
 app.listen(port, () => {
     console.log(`Listening to ${port}`)
 })
