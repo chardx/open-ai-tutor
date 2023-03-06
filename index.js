@@ -65,8 +65,8 @@ export const getTutorial = async () => {
 
 }
 // Delay each iteration for 30min
-setInterval(getTutorial, 2 * 60 * 1000);
-const generatedTut = getTutorial();
+// setInterval(getTutorial, 2 * 60 * 1000);
+// const generatedTut = getTutorial();
 
 
 app.listen(port, () => {
