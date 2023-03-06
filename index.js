@@ -5,7 +5,7 @@ import run from "./routes/run-command.js"
 import axios from 'axios'
 import dotenv from 'dotenv';
 import { sendEmail } from './sendEmail.js'
-
+import { getPrompt } from './getPrompt.js'
 const app = express();
 
 // Middlewares
@@ -28,56 +28,7 @@ app.get('/', function (req, res) {
 })
 
 
-function getPrompt() {
-    // select random keywords
-    const keywords = [
-        "reactjs",
-        "nextjs",
-        "reactjs Hooks",
-        "nodejs",
-        "javascript",
-        "front-end developer",
-        "back-end developer",
-        "html",
-        "css",
-    ];
 
-
-    const index = Math.floor(Math.random() * keywords.length);
-    const keyword = keywords[index];
-
-    const categories = [
-        {
-
-            type: 'Interview question',
-            description: `Act as Interviewer for Web Developer position 
-                and ask advance question about ${keyword} and 
-                provide your answer in the best answer possible.
-                 Please provide code examples if applicable. 
-                 I also want the response to enclose it with html 
-                 proper tagging and style`},
-        {
-            type: 'Behavioural question', description: `Act as an Interviewer for Web Developer position 
-            and ask Behavioural Interview question  then provide  the best answer possible
-            in STAR Method format.Please answer in clear and conscise manner. I also want the response to enclose it with html proper tagging and style` },
-        {
-            type: 'Multiple choice question', description: `Generate an advance question about ${keyword} 
-        in 4 multiple choice of answer. Provide the answer below and explanation. 
-        I also want the response to enclose it with html proper tagging and add style. ` },
-        {
-            type: 'CSS Tip of the Day', description: `Provide a Super Random CSS Tip and provide a code example. I also want the response to enclose it with html proper tagging and add style.`
-        },
-        {
-            type: 'Javascript Coding problem', description: `Provide a random leet code problem and show your solutions in Javascript with explanation. I also want the response to enclose it with html proper tagging and add style.`
-        },]
-
-    const categoryIndex = Math.floor(Math.random() * categories.length);
-
-    const prompt = categories[categoryIndex].description
-    const category = categories[categoryIndex].type
-
-    return [keyword, prompt, category];
-}
 
 
 export const getTutorial = async () => {
@@ -114,8 +65,8 @@ export const getTutorial = async () => {
 
 }
 // Delay each iteration for 30min
-// setInterval(getTutorial, 2 * 60 * 1000);
-// const generatedTut = getTutorial();
+setInterval(getTutorial, 2 * 60 * 1000);
+const generatedTut = getTutorial();
 
 
 app.listen(port, () => {
