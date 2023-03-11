@@ -29,7 +29,7 @@ app.get('/', function (req, res) {
     res.send();
 })
 
-export const getTutorial = async () => {
+export default getTutorial = async () => {
     const [keyword, prompt, category] = getPrompt();
     try {
 
