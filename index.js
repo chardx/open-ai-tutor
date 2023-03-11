@@ -67,8 +67,8 @@ export default getTutorial = async () => {
 // const generatedTut = getTutorial();
 
 
-cron.schedule("*/2 * * * *", getTutorial)
-getTutorial();
+// cron.schedule("*/2 * * * *", getTutorial)
+// getTutorial();
 app.listen(port, () => {
     console.log(`Listening to ${port}`)
 })
