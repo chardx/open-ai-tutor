@@ -1,5 +1,5 @@
 import express from 'express'
-import getTutorial from '../index.js'
+import { getTutorial } from '../index.js'
 
 
 const router = express.Router();
