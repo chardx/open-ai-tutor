@@ -1,6 +1,8 @@
 import express from "express"
 import home from "./routes/home.js"
 import run from "./routes/run-command.js"
+import cron from "node-cron";
+
 
 import axios from 'axios'
 import dotenv from 'dotenv';
@@ -26,10 +28,6 @@ app.get('/', function (req, res) {
     res.write("Hi am Richard. This is a test ")
     res.send();
 })
-
-
-
-
 
 export const getTutorial = async () => {
     const [keyword, prompt, category] = getPrompt();
@@ -69,6 +67,8 @@ export const getTutorial = async () => {
 // const generatedTut = getTutorial();
 
 
+cron.schedule("*/2 * * * *", getTutorial)
+const generatedTut = getTutorial();
 app.listen(port, () => {
     console.log(`Listening to ${port}`)
 })
